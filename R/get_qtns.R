@@ -37,7 +37,8 @@ get_qtns <- function(Y, GM, P, method, bin.sizes, nqtn, CV = NULL, GDP = NULL,
   bound <- round(sqrt(n)/sqrt(log10(n)))
 
   # Keep only numbers of pseudo-QTNs within the upper bound
-  nqtn <- nqtn[nqtn <= bound]
+  nqtn[nqtn > bound] <- bound
+  nqtn <- unique(nqtn[nqtn <= bound])
 
   # If there is only one combination of bin.sizes and nqtn, set the method to
   # static bin selection.
