@@ -41,3 +41,4 @@ p-values for pseudo-QTNs used by \code{\link{get_qtns}}.
 \author{
 Aaron Kusmec
 }
+

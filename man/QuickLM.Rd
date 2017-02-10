@@ -9,3 +9,4 @@ QuickLM(ys, Xs, pBigMat, observations, npcs, nqtn)
 \description{
 Parallelized general linear model.
 }
+

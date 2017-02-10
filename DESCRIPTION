@@ -3,12 +3,12 @@ Title: Perform GWAS Using the FarmCPU Model
 Version: 1.0.0
 Authors@R: person("Aaron", "Kusmec", email = "amkusmec@iastate.edu", role = c("aut", "cre"))
 Description: Performs genome-wide association analyses using the FarmCPU model.
-  Briefly, FarmCPU tests the significance of associations between genetic
-  markers and phenotypes using the general linear model framework. After
-  single-marker regression, FarmCPU divides the genome into bins and identifies
-  a set of optimal markers to use as covariates in the next iteration. This
-  approach, similar to that of the multi-locus mixed model, increases power and
-  decreases the false discovery rate.
+    Briefly, FarmCPU tests the significance of associations between genetic markers
+    and phenotypes using the general linear model framework. After single-marker
+    regression, FarmCPU divides the genome into bins and identifies a set of optimal
+    markers to use as covariates in the next iteration. This approach, similar to
+    that of the multi-locus mixed model, increases power and decreases the false
+    discovery rate.
 Depends:
     R (>= 3.3.2)
 License: MIT + file LICENSE
@@ -31,5 +31,5 @@ LinkingTo: bigmemory,
     Rcpp,
     RcppEigen,
     RcppParallel
-RoxygenNote: 6.0.0
+RoxygenNote: 5.0.1
 SystemRequirements: GNU make

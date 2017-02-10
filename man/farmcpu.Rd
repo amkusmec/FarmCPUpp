@@ -7,8 +7,8 @@
 farmcpu(Y, GD, GM, CV = NULL, GP = NULL, method.sub = "reward",
   method.sub.final = "reward", method.bin = "static", bin.size = c(5e+05,
   5e+06, 5e+07), bin.selection = seq(10, 100, 10), memo = NULL,
-  Prior = NULL, ncpus = 1, maxLoop = 10, converge = 1,
-  iteration.output = FALSE, p.threshold = NA, ncores = 1,
+  Prior = NULL, ncores.glm = 1, maxLoop = 10, converge = 1,
+  iteration.output = FALSE, p.threshold = NA, ncores.reml = 1,
   threshold = 0.7)
 }
 \arguments{
@@ -47,7 +47,7 @@ pseudo-QTN selection.}
 \item{Prior}{A dataframe with the same format as \code{GM} with a fourth
 numeric column containing prior marker probabilities.}
 
-\item{ncpus}{Integer scalar number of cores to use for single-marker
+\item{ncores.glm}{Integer scalar number of cores to use for single-marker
 regression.}
 
 \item{maxLoop}{Integer scalar maximum number of iterations to perform.}
@@ -63,7 +63,7 @@ iteration or not.}
 pseudo-QTNs in the model on the first iteration. Defaults to a 0.01
 Bonferroni correction.}
 
-\item{ncores}{Integer scalar number of cores to use for pseudo-QTN selection.}
+\item{ncores.reml}{Integer scalar number of cores to use for pseudo-QTN selection.}
 
 \item{threshold}{Numeric scalar maximum correlation allowed between
 pseudo-QTNs.}
@@ -88,3 +88,4 @@ Zhiwu Zhang
 
 Aaron Kusmec
 }
+

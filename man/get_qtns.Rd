@@ -5,7 +5,7 @@
 \title{Select pseudo-QTNs.}
 \usage{
 get_qtns(Y, GM, P, method, bin.sizes, nqtn, CV = NULL, GDP = NULL,
-  theLoop = NULL, ncores = 1)
+  theLoop = NULL)
 }
 \arguments{
 \item{Y}{A data frame with two columns. The first column contains taxa names.
@@ -28,9 +28,6 @@ base-pair positions.}
 
 \item{theLoop}{The current iteration of the overal FarmCPU process. Controls
 bin size selection for \code{method = "static"}.}
-
-\item{ncores}{The number of processor cores to use for parallel optimization
-of pseudo-QTNs.}
 }
 \value{
 A logical vector specifying which markers have been chosen as
@@ -47,3 +44,4 @@ Zhiwu Zhang
 
 Aaron Kusmec
 }
+

@@ -27,3 +27,4 @@ Make a manhattan plot from GWAS results.
 \author{
 Aaron Kusmec
 }
+
