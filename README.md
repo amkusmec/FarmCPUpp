@@ -103,6 +103,8 @@ desc <- dget("mdp_numeric_pointer.desc")
 myGD <- attach.big.matrix(desc)
 ```
 
+Please note that if you are using a file-backed big matrix, you must remain in the same working directory as the backing file until the GWAS is completed or the worker processes for bin selection will not be able to access the genotype data.
+
 #### Genotype Information
 
 Genotype information should be provided as a three column dataframe with colum names. The first column, SNP, should contain unique IDs for each marker. The second column, Chromosome, should contain integer or numeric IDs for each chromosome. The third column, Position, shoudl contain the integer base-pair positions of each marker. The code below loads a sample genotype information file.
