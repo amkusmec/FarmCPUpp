@@ -11,7 +11,7 @@ Description: Performs genome-wide association analyses using the FarmCPU model.
   decreases the false discovery rate.
 Depends:
     R (>= 3.3.2)
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
