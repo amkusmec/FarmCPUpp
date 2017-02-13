@@ -150,3 +150,12 @@ FarmCPUpp also contains a function for creating manhattan plots from a single GW
 ```
 manhattan_plot(myResults$EarDia$GWAS, cutoff = 0.01)
 ```
+
+### Fine-tuning Performance
+
+The speed-ups provided by this package are derived from two places: the use of C++ for single-marker regressions and parallel processing. The user has the option to control the degree of parallel processing used at two steps in the program in order to optimize performance through the use of the `ncores.glm` and `ncores.reml` parameters. There are several considerations for setting these parameters.
+
+1. The maximum value for either parameter should be the number of cores present on your machine. Using more cores than you have available will not decrease runtime beyond the runtime achieved using the maximum number of cores available.
+2. `ncores.reml` and `ncores.glm` are used at different points in the program. Therefore, the sum of these two parameters may be greater than the number of cores on your machine without affecting performance.
+3. Overhead due to interprocess communication decreases the effectiveness of parallelization when the problem size is small. Therefore, single-marker regressions will not be run in parallel if the total number of markers is less than 10000.
+4. The upper bound on number of pseudo-QTNs added in each iteration is $\frac{\sqrt{n}}{log_{10}\sqrt{n}}$, where $n$ is the number of non-missing phenotypic observations. Therefore, you can calculate the number of bin combinations you have prior to execution and set `ncores.reml` accordingly.

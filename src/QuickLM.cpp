@@ -174,7 +174,7 @@ Rcpp::List QuickLM(Rcpp::NumericVector ys, Rcpp::NumericMatrix Xs, SEXP pBigMat,
   LM lm(as<VectorXd>(ys), as<MatrixXd>(Xs), xpMat, observations, npcs, nqtn, coefficients, stderr, df, seqQTN);
 
   // parallelFor
-  parallelFor(0, xpMat->ncol(), lm, 1000);
+  parallelFor(0, xpMat->ncol(), lm, 10000);
 
   return List::create(_["coefficients"] = coefficients,
                       _["stderr"] = stderr,
