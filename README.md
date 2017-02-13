@@ -50,7 +50,7 @@ brew install open-mpi
 7. Install `Rmpi` in R or RStudio:
 ```
 install.packages("Rmpi", type = "source",
-                 configure.arges = paste(
+                 configure.args = paste(
                     "--with-Rmpi-include=/usr/local/Cellar/open-mpi/x.x.x/include",
                     "--with-Rmpi-libpath=/usr/local/Cellar/open-mpi/x.x.x/lib",
                     "--with-Rmpi-type=OPENMPI"
