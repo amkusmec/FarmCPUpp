@@ -45,10 +45,10 @@ struct LM : public Worker {
   // Input variables
   const VectorXd y;
   const MatrixXd X;
+  const Map<MatrixXd> bM;
   VectorXi observations;
   const int npcs;
   const int nqtn;
-  const Map<MatrixXd> bM;
   const int df;
 
   // Output structures
@@ -59,11 +59,11 @@ struct LM : public Worker {
   // Constructor
   LM(const VectorXd y, const MatrixXd X, const XPtr<BigMatrix> bM,
      IntegerVector observations, const int npcs, const int nqtn,
-     NumericVector coefficients, NumericVector stderr,
-     const int df, NumericMatrix seqQTN)
+     const int df, NumericVector coefficients, NumericVector stderr,
+     NumericMatrix seqQTN)
     : y(y), X(X), bM(Map<MatrixXd>((double *)bM->matrix(), bM->nrow(), bM->ncol()  )),
-      observations(as<VectorXi>(observations)), npcs(npcs), nqtn(nqtn), coefficients(coefficients),
-      stderr(stderr), df(df), seqQTN(seqQTN) {}
+      observations(as<VectorXi>(observations)), npcs(npcs), nqtn(nqtn), df(df),
+      coefficients(coefficients), stderr(stderr), seqQTN(seqQTN) {}
 
   // For extracting elements of a vector by a vector of indices
   // Modified to only accept my predetermined inputs and output
@@ -171,7 +171,8 @@ Rcpp::List QuickLM(Rcpp::NumericVector ys, Rcpp::NumericMatrix Xs, SEXP pBigMat,
   int df = Xs.nrow() - Xs.ncol() - 1;
 
   // Pass input and output to the worker
-  LM lm(as<VectorXd>(ys), as<MatrixXd>(Xs), xpMat, observations, npcs, nqtn, coefficients, stderr, df, seqQTN);
+  LM lm(as<VectorXd>(ys), as<MatrixXd>(Xs), xpMat, observations, npcs, nqtn, df,
+        coefficients, stderr, seqQTN);
 
   // parallelFor
   parallelFor(0, xpMat->ncol(), lm, 10000);
