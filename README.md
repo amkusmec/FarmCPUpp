@@ -7,8 +7,8 @@ FarmCPUpp provides an efficient reimplementation of the FarmCPU R scripts found 
 FarmCPUpp relies on multiple HPC packages for efficient memory usage and parallel processing. To install FarmCPUpp itself, you will need the `devtools` package. Run this code to ensure that you have the appropriate packages installed and updated:
 
 ```
-packages <- c("Rcpp", "RcppEigen", "RcppParallel", "Rmpi", "snow", "doSNOW",
-              "foreach", "bigmemory", "biganalytics", "devtools")
+packages <- c("Rcpp", "RcppEigen", "RcppParallel", "parallel", "bigmemory",
+              "devtools")
 install.packages(packages)
 devtools::install_github(repo = "amkusmec/FarmCPUpp")
 ```
@@ -18,43 +18,6 @@ Following installation the package can be loaded for use with
 ```
 library(bigmemory)
 library(FarmCPUpp)
-```
-
-#### Installing `Rmpi` on Mac OS X
-
-Apple no longer bundles OpenMPI with Mac OS X which causes problems when installing `Rmpi`. In order to install `Rmpi`, follow these steps:
-
-1. Install Xcode 7 or later from the App Store.
-2. Open the Terminal application and install the Xcode Command Line Tools.
-```
-xcode-select --install
-```
-3. Install Homebrew.
-```
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew doctor # To check for installation problems
-```
-If you run into problems with file permissions, change the ownership on the Homebrew directory:
-```
-sudo chown -R $(whoami):admin /usr/local
-```
-4. Install gcc.
-```
-brew install gcc
-```
-5. Install OpenMPI.
-```
-brew install open-mpi
-```
-6. The last line of output from installing OpenMPI will tell you where Homebrew installed it. This should be a directory of the form `/usr/local/Cellar/open-mpi/x.x.x`, where `x.x.x` is the version number.
-7. Install `Rmpi` in R or RStudio:
-```
-install.packages("Rmpi", type = "source",
-                 configure.args = paste(
-                    "--with-Rmpi-include=/usr/local/Cellar/open-mpi/x.x.x/include",
-                    "--with-Rmpi-libpath=/usr/local/Cellar/open-mpi/x.x.x/lib",
-                    "--with-Rmpi-type=OPENMPI"
-                 ))
 ```
 
 ### Data Formats
