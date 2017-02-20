@@ -77,7 +77,7 @@ get_qtns <- function(Y, GM, P, method, bin.sizes, nqtn, CV = NULL, GDP = NULL,
                      rep(bin.sizes, each = length(nqtn)),
                      rep(nqtn, times = length(bin.sizes)),
                      SIMPLIFY = FALSE)
-    reml <- parallel::parLapplyLB(X = params, fun = function(x) {
+    reml <- parallel::parLapply(X = params, fun = function(x) {
       local_GDP <- bigmemory::attach.big.matrix(GD_desc)
       mySpecify <- get_bins(GI = GM, GP = cbind(GM, P), bin.size = x[1],
                             nqtn = x[2])
