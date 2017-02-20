@@ -8,4 +8,3 @@
 \description{
 A package for efficient GWAS using the FarmCPU model.
 }
-

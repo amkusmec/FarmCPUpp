@@ -3,6 +3,7 @@
 export(QuickLM)
 export(farmcpu)
 export(manhattan_plot)
+export(qq_plot)
 export(write_results)
 importFrom(Rcpp,sourceCpp)
 importFrom(RcppParallel,RcppParallelLibs)

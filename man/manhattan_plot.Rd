@@ -5,7 +5,8 @@
 \title{Make a manhattan plot from GWAS results.}
 \usage{
 manhattan_plot(res, colors = c("black", "grey80"), cutoff = NULL,
-  ylab = expression(paste(-log[10], "p-value")))
+  ylab = expression(paste(-log[10], "p-value")), linecol = "red",
+  linetype = 2, linewidth = 2, ...)
 }
 \arguments{
 \item{res}{A dataframe with at least three named columns: a numeric column of
@@ -20,6 +21,14 @@ names.}
 
 \item{ylab}{A label for the y-axis (default =
 \code{expression(paste(-log[10], "p-value"))}).}
+
+\item{linecol}{String specifying an R color for the cutoff line.}
+
+\item{linetype}{Integer specifying the line type for the cutoff line.}
+
+\item{linewidth}{Integer specifying the line width for the cutoff line.}
+
+\item{...}{Other graphics arguments.}
 }
 \description{
 Make a manhattan plot from GWAS results.
@@ -27,4 +36,3 @@ Make a manhattan plot from GWAS results.
 \author{
 Aaron Kusmec
 }
-
