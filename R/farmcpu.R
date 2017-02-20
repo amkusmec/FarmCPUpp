@@ -99,12 +99,12 @@ farmcpu <- function(Y, GD, GM, CV = NULL, GP = NULL, method.sub = "reward",
   RcppParallel::setThreadOptions(numThreads = ncores.glm)
 
   # Configure parallel processing for bin optimization --------------------
-  snow::setDefaultClusterOptions(outfile = "/dev/null")
-  cl <- snow::makeMPIcluster(count = ncores.reml)
-  invisible(snow::clusterEvalQ(cl, library(bigmemory)))
-  invisible(snow::clusterEvalQ(cl, library(MASS)))
-  invisible(snow::clusterEvalQ(cl, library(FarmCPUpp)))
-  doSNOW::registerDoSNOW(cl)
+  cl <- parallel::makeCluster(spec = ncores.reml, outfile = "/dev/null")
+  parallel::setDefaultCluster(cl)
+  invisible(parallel::clusterEvalQ(expr = { library(bigmemory)
+    library(MASS)
+    library(FarmCPUpp)
+  }))
 
   # Main loop -------------------------------------------------------------
   while (!isDone) {
@@ -278,7 +278,7 @@ farmcpu <- function(Y, GD, GM, CV = NULL, GP = NULL, method.sub = "reward",
   }
 
   # Clean-up and exit
-  snow::stopCluster(cl)
+  parallel::stopCluster(cl)
   gc()
   cat("*********************** FarmCPU Accomplished Successfully **********************\n")
   return(myResults)

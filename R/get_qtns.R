@@ -73,18 +73,32 @@ get_qtns <- function(Y, GM, P, method, bin.sizes, nqtn, CV = NULL, GDP = NULL,
     # parallel
     cat("Optimizing possible QTNs...\n")
     GD_desc <- bigmemory::describe(GDP)
-    reml <- foreach::foreach(bin = rep(bin.sizes, each = length(nqtn)),
-                             n = rep(nqtn, times = length(bin.sizes)),
-                             .packages = c('bigmemory', 'MASS', 'FarmCPUpp')) %dopar% {
-        local_GDP <- bigmemory::attach.big.matrix(GD_desc)
-        mySpecify <- get_bins(GI = GM, GP = cbind(GM, P), bin.size = bin,
-                              nqtn = n)
-        seqQTN <- which(mySpecify == TRUE)
-        GK <- bigmemory::as.matrix(bigmemory::deepcopy(local_GDP, rows = !missing, cols = seqQTN))
-        myREML <- bin_reml(Y = matrix(Y[, 2], ncol = 1), CV = CV, GK = GK)
-        list(res = c(bin, n, myREML$LL, myREML$vg, myREML$ve),
-                    seqQTN = seqQTN)
-    }
+    # reml <- foreach::foreach(bin = rep(bin.sizes, each = length(nqtn)),
+    #                          n = rep(nqtn, times = length(bin.sizes)),
+    #                          .packages = c('bigmemory', 'MASS', 'FarmCPUpp')) %dopar% {
+    #     local_GDP <- bigmemory::attach.big.matrix(GD_desc)
+    #     mySpecify <- get_bins(GI = GM, GP = cbind(GM, P), bin.size = bin,
+    #                           nqtn = n)
+    #     seqQTN <- which(mySpecify == TRUE)
+    #     GK <- bigmemory::as.matrix(bigmemory::deepcopy(local_GDP, rows = !missing, cols = seqQTN))
+    #     myREML <- bin_reml(Y = matrix(Y[, 2], ncol = 1), CV = CV, GK = GK)
+    #     list(res = c(bin, n, myREML$LL, myREML$vg, myREML$ve),
+    #                 seqQTN = seqQTN)
+    #                          }
+
+    params <- mapply(function(x, y) c(x, y),
+                     rep(bin.sizes, each = length(nqtn)),
+                     rep(nqtn, times = length(bin.sizes)),
+                     SIMPLIFY = FALSE)
+    reml <- parallel::parLapplyLB(X = params, fun = function(x) {
+      local_GDP <- bigmemory::attach.big.matrix(GD_desc)
+      mySpecify <- get_bins(GI = GM, GP = cbind(GM, P), bin.size = x[1],
+                            nqtn = x[2])
+      seqQTN <- which(mySpecify == TRUE)
+      GK <- bigmemory::as.matrix(bigmemory::deepcopy(local_GDP, rows = !missing, cols = seqQTN))
+      myREML <- bin_reml(Y = matrix(Y[, 2], ncol = 1), CV = CV, GK = GK)
+      list(res = c(x[1], x[2], myREML$LL, myREML$vg, myREML$ve), seqQTN = seqQTN)
+    })
 
     # Reduce the REML results
     reml.table <- unlist(lapply(reml, function(l) { return(l$res) }))

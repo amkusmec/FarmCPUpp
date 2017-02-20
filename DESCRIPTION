@@ -21,11 +21,8 @@ Imports:
     Rcpp,
     RcppEigen,
     RcppParallel,
-    foreach,
     MASS,
-    snow,
-    Rmpi,
-    doSNOW
+    parallel
 LinkingTo: bigmemory,
     BH,
     Rcpp,
