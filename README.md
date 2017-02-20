@@ -7,8 +7,8 @@ FarmCPUpp provides an efficient reimplementation of the FarmCPU R scripts found 
 FarmCPUpp relies on multiple HPC packages for efficient memory usage and parallel processing. To install FarmCPUpp itself, you will need the `devtools` package. Run this code to ensure that you have the appropriate packages installed and updated:
 
 ```
-packages <- c("Rcpp", "RcppEigen", "RcppParallel", "parallel", "bigmemory",
-              "devtools")
+packages <- c("Rcpp", "RcppEigen", "RcppParallel", "parallel", "doParallel", 
+              "foreach", "bigmemory", "devtools")
 install.packages(packages)
 devtools::install_github(repo = "amkusmec/FarmCPUpp")
 ```
