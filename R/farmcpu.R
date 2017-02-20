@@ -100,11 +100,11 @@ farmcpu <- function(Y, GD, GM, CV = NULL, GP = NULL, method.sub = "reward",
 
   # Configure parallel processing for bin optimization --------------------
   cl <- parallel::makeCluster(spec = ncores.reml, outfile = "/dev/null")
-  parallel::setDefaultCluster(cl)
-  invisible(parallel::clusterEvalQ(expr = { library(bigmemory)
+  parallel::clusterEvalQ(cl, expr = { library(bigmemory)
     library(MASS)
     library(FarmCPUpp)
-  }))
+  })
+  doParallel::registerDoParallel(cl)
 
   # Main loop -------------------------------------------------------------
   while (!isDone) {

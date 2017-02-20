@@ -21,7 +21,9 @@ Imports:
     RcppEigen,
     RcppParallel,
     MASS,
-    parallel
+    parallel,
+    doParallel,
+    foreach
 LinkingTo: bigmemory,
     BH,
     Rcpp,
