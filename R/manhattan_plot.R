@@ -9,6 +9,9 @@
 #' @param cutoff A significance cutoff (default = \code{NULL}).
 #' @param ylab A label for the y-axis (default =
 #'   \code{expression(paste(-log[10], "p-value"))}).
+#' @param linecol String specifying an R color for the cutoff line.
+#' @param linetype Integer specifying the line type for the cutoff line.
+#' @param linewidth Integer specifying the line width for the cutoff line.
 #' @param ... Other graphics arguments.
 #'
 #' @author Aaron Kusmec
@@ -16,7 +19,8 @@
 #' @export
 
 manhattan_plot <- function(res, colors = c("black", "grey80"), cutoff = NULL,
-                           ylab = expression(paste(-log[10], "p-value")), ...) {
+                           ylab = expression(paste(-log[10], "p-value")),
+                           linecol = "red", linetype = 2, linewidth = 2, ...) {
   # Check for appropriate column names
   if (!("Chromosome" %in% names(res))) stop("No column 'Chromosome.'")
   if (!("Position" %in% names(res))) stop("No column 'Position'.")
@@ -47,6 +51,6 @@ manhattan_plot <- function(res, colors = c("black", "grey80"), cutoff = NULL,
        las = 2)
   points(res$Order, -log10(res$p.value), col = colors[res$Color], ...)
   if (!is.null(cutoff)) {
-    abline(h = -log10(cutoff), lwd = 2, lty = 2, col = "red")
+    abline(h = -log10(cutoff), lwd = linewidth, lty = linetype, col = linecol)
   }
 }
