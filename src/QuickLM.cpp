@@ -13,6 +13,8 @@
 #include <bigmemory/MatrixAccessor.hpp>
 #include <numeric>
 
+#include <math.h>
+
 // [[Rcpp:plugins(cpp11)]]
 
 using namespace RcppParallel;
@@ -124,14 +126,14 @@ struct LM : public Worker {
       double s2 = (yty - m_coef.transpose() * rhs).norm() / double(df);
       VectorXd se((iXX.diagonal() * s2).cwiseSqrt());
 
-      if (B22 < 10.0e-08) {
+      if (fabs(B22) < 10.0e-08) {
         coefficients[i] = ::NA_REAL;
         stderr[i] = ::NA_REAL;
 
         if (nqtn != 0) {
           VectorXd tvalues(VectorXd::Constant(nqtn, ::NA_REAL));
           for (int j = 0; j < nqtn; j++) {
-            seqQTN(i, j) = tvalues(1 + npcs + j);
+            seqQTN(i, j) = tvalues(j);
           }
         }
       } else {
