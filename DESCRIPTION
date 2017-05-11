@@ -1,6 +1,6 @@
 Package: FarmCPUpp
 Title: Perform GWAS Using the FarmCPU Model
-Version: 1.1.0
+Version: 1.2.0
 Authors@R: person("Aaron", "Kusmec", email = "amkusmec@iastate.edu", role = c("aut", "cre"))
 Description: Performs genome-wide association analyses using the FarmCPU model.
     Briefly, FarmCPU tests the significance of associations between genetic markers
