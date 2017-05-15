@@ -61,7 +61,8 @@ farmcpu <- function(Y, GD, GM, CV = NULL, GP = NULL, method.sub = "reward",
                     ncores.reml = 1, threshold = 0.7) {
 
   cat("------------------------------ Welcome to FarmCPU ------------------------------\n")
-  cat("Version 1.2.0 05.11.2017\n\n")
+  v0 <- paste(unlist(packageVersion("FarmCPUpp")), collapse = ".")
+  cat("Version", v0, "\n\n")
 
   # Argument checking -----------------------------------------------------
   sub.methods <- c("reward", "mean", "median", "penalty", "onsite")
