@@ -2,7 +2,7 @@
 
 FarmCPUpp provides an efficient reimplementation of the FarmCPU R scripts found [here](http://zzlab.net/FarmCPU/index.html). Through the use of the `bigmemory`, `Rcpp`, `RcppEigen`, and `RcppParallel` packages, FarmCPUpp decreases the memory usage of the original FarmCPU scripts and improves the runtime through parallelization. FarmCPUpp will provide the greatest benefits on large datasets and on machines with many CPU cores.
 
-For more information on implementation, performance comparisons, and citation, please see the preprint (here)[https://www.biorxiv.org/content/early/2017/12/24/238832].
+For more information on implementation, performance comparisons, and citation, please see the preprint [here](https://www.biorxiv.org/content/early/2017/12/24/238832).
 
 ### Installation
 
