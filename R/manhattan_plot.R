@@ -48,7 +48,7 @@ manhattan_plot <- function(res, colors = c("black", "grey80"), cutoff = NULL,
   plot(1, type = "n", xlim = c(1, max(res$Order)), ylim = ylim,
        xlab = "", ylab = ylab, xaxt = "n", las = 2, ...)
   axis(1, at = breakpoints$Position, labels = paste("chr", breakpoints$Chromosome),
-       las = 2)
+       las = 2, ...)
   points(res$Order, -log10(res$p.value), col = colors[res$Color], ...)
   if (!is.null(cutoff)) {
     abline(h = -log10(cutoff), lwd = linewidth, lty = linetype, col = linecol)
