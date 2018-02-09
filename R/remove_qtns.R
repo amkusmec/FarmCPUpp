@@ -36,6 +36,8 @@ remove_qtns <- function(GDP = NULL, GM = NULL, seqQTN = NULL, seqQTN.p = NULL,
   # Number of pseudo-QTNs after ID construction
   n <- length(seqQTN)
 
+  if (n < 2) return(seqQTN)
+
   # Get marker scores for the pseudo-QTNs.
   X <- bigmemory::as.matrix(bigmemory::deepcopy(GDP, cols = seqQTN))
 
