@@ -9,6 +9,10 @@ Please cite the following two papers if you use FarmCPUpp:
 - The original description of the [FarmCPU algorithm](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005767)
 - The description of [FarmCPUpp's](https://onlinelibrary.wiley.com/doi/full/10.1002/pld3.53) implementation
 
+### License
+
+This software is free and open source under the terms of the [MIT License](https://choosealicense.com/licenses/mit/#).
+
 ### Installation
 
 FarmCPUpp relies on multiple HPC packages for efficient memory usage and parallel processing. To install FarmCPUpp itself, you will need the `devtools` package. Run this code to ensure that you have the appropriate packages installed and updated:
