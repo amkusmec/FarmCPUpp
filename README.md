@@ -2,6 +2,18 @@
 
 FarmCPUpp provides an efficient reimplementation of the FarmCPU R scripts found [here](http://zzlab.net/FarmCPU/index.html). Through the use of the `bigmemory`, `Rcpp`, `RcppEigen`, and `RcppParallel` packages, FarmCPUpp decreases the memory usage of the original FarmCPU scripts and improves the runtime through parallelization. FarmCPUpp will provide the greatest benefits on large datasets and on machines with many CPU cores.
 
+### A Note on Missing Documentation
+
+The help function will no longer find documentation for `bin_reml.R`. This issue has
+something to do with `roxygen2` processing the markdown and finding extra spaces 
+on lines that, incredibly, have no characters where `roxygen2` says the errors are. 
+This hasn't been an issue in the past; it only generates warnings when you install 
+the package. As of R 3.6, those warnings are now converted into errors and package 
+installation fails. To keep the package usable, I've simply commented out the 
+documentation of `bin_reml` so that the package builds properly. If you really need 
+to see that documentation, you can view it by running `View(FarmCPUpp::bin_reml)` 
+from the console.
+
 ### Citation
 
 Please cite the following two papers if you use FarmCPUpp:

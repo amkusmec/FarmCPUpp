@@ -1,23 +1,18 @@
-#' Evaluate the maximum log-likelihood.
-#'
-#' Estimate genetic and error variance components for a phenotype using a set of
-#' markers as explanatory variables.
-#'
-#' @param Y A numeric matrix with one column containing phenotypic values.
-#' @param CV A numeric matrix containing any user-specified covariates.
-#' @param GK A numeric matrix containing marker scores.
-#'
-#' @return A list containing the following components: \describe{
-#'   \item{\code{LL}} A numeric scalar. The -2*LL estimated by REML.
-#'   \item{\code{vg}} A numeric scalar. The estimated genetic variance.
-#'   \item{\code{ve}} A numeric scalar. The estimated error variance.}
-#'
-#' @author Xiaolei Liu
-#' @author Jiabo Wang
-#' @author Qishan Wang
-#' @author Feng Tian
-#' @author Zhiwu Zhang
-#' @author Aaron Kusmec
+#Evaluate the maximum log-likelihood.
+#
+#Estimate genetic and error variance components for a phenotype using a set of
+#markers as explanatory variables.
+#
+#@param Y A numeric matrix with one column containing phenotypic values.
+#@param CV A numeric matrix containing any user-specified covariates.
+#@param GK A numeric matrix containing marker scores.
+#
+#@return A list containing the following components: \describe{
+#  \item{\code{LL}}{A numeric scalar. The -2*LL estimated by REML.}
+#  \item{\code{vg}}{A numeric scalar. The estimated genetic variance.}
+#  \item{\code{ve}}{A numeric scalar. The estimated error variance.}}
+#
+#@author Xiaolei Liu, Jiabo Wang, Qishan Wang, Feng Tian, Zhiwu Zhang, Aaron Kusmec
 
 bin_reml <- compiler::cmpfun(function(Y = NULL, CV = NULL, GK = NULL) {
   # Add a column for the mean to CV
