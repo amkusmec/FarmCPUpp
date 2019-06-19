@@ -29,5 +29,5 @@ LinkingTo: bigmemory,
     Rcpp,
     RcppEigen,
     RcppParallel
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 SystemRequirements: GNU make

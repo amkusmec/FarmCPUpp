@@ -17,7 +17,7 @@ bin_reml(Y = NULL, CV = NULL, GK = NULL)
 A list containing the following components: \describe{
   \item{\code{LL}} A numeric scalar. The -2*LL estimated by REML.
   \item{\code{vg}} A numeric scalar. The estimated genetic variance.
-  \item{\code{ve}} A numeric scalar. The estimated error variance. }
+  \item{\code{ve}} A numeric scalar. The estimated error variance.}
 }
 \description{
 Estimate genetic and error variance components for a phenotype using a set of

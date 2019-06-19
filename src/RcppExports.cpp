@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // QuickLM
 Rcpp::List QuickLM(Rcpp::NumericVector ys, Rcpp::NumericMatrix Xs, SEXP pBigMat, IntegerVector observations, int npcs, int nqtn);
-RcppExport SEXP FarmCPUpp_QuickLM(SEXP ysSEXP, SEXP XsSEXP, SEXP pBigMatSEXP, SEXP observationsSEXP, SEXP npcsSEXP, SEXP nqtnSEXP) {
+RcppExport SEXP _FarmCPUpp_QuickLM(SEXP ysSEXP, SEXP XsSEXP, SEXP pBigMatSEXP, SEXP observationsSEXP, SEXP npcsSEXP, SEXP nqtnSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -21,4 +21,14 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(QuickLM(ys, Xs, pBigMat, observations, npcs, nqtn));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_FarmCPUpp_QuickLM", (DL_FUNC) &_FarmCPUpp_QuickLM, 6},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_FarmCPUpp(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

@@ -5,6 +5,6 @@
 #'
 #' @export
 QuickLM <- function(ys, Xs, pBigMat, observations, npcs, nqtn) {
-    .Call('FarmCPUpp_QuickLM', PACKAGE = 'FarmCPUpp', ys, Xs, pBigMat, observations, npcs, nqtn)
+    .Call('_FarmCPUpp_QuickLM', PACKAGE = 'FarmCPUpp', ys, Xs, pBigMat, observations, npcs, nqtn)
 }
 

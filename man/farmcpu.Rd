@@ -5,11 +5,11 @@
 \title{Perform GWAS using the FarmCPU model.}
 \usage{
 farmcpu(Y, GD, GM, CV = NULL, GP = NULL, method.sub = "reward",
-  method.sub.final = "reward", method.bin = "static", bin.size = c(5e+05,
-  5e+06, 5e+07), bin.selection = seq(10, 100, 10), memo = NULL,
-  Prior = NULL, ncores.glm = 1, maxLoop = 10, converge = 1,
-  iteration.output = FALSE, p.threshold = NA, ncores.reml = 1,
-  threshold = 0.7)
+  method.sub.final = "reward", method.bin = "static",
+  bin.size = c(5e+05, 5e+06, 5e+07), bin.selection = seq(10, 100, 10),
+  memo = NULL, Prior = NULL, ncores.glm = 1, maxLoop = 10,
+  converge = 1, iteration.output = FALSE, p.threshold = NA,
+  ncores.reml = 1, threshold = 0.7)
 }
 \arguments{
 \item{Y}{A dataframe with two columns: a character column of sample names and
