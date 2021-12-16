@@ -34,7 +34,7 @@ bin_reml <- compiler::cmpfun(function(Y = NULL, CV = NULL, GK = NULL) {
   }
 
   # Singular value decomposition on genotypes
-  K.GK.svd <- svd(GK, LINPACK = TRUE)
+  K.GK.svd <- svd(GK)
   d <- K.GK.svd$d[K.GK.svd$d > 1e-08]
   d <- d^2
   U1 <- K.GK.svd$u[, 1:length(d)]
