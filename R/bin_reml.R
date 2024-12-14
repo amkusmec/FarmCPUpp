@@ -25,7 +25,7 @@ bin_reml <- compiler::cmpfun(function(Y = NULL, CV = NULL, GK = NULL) {
 
 
   # Calculate the log-likelihood ------------------------------------------
-  if (!is.null(GK) && var(GK) == 0) {
+  if (!is.null(GK) && any(var(GK) == 0)) {
     deltaExpStart <- 100
     deltaExpEnd <- deltaExpStart
   } else {

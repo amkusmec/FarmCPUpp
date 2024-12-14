@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // QuickLM
 Rcpp::List QuickLM(Rcpp::NumericVector ys, Rcpp::NumericMatrix Xs, SEXP pBigMat, IntegerVector observations, int npcs, int nqtn);
 RcppExport SEXP _FarmCPUpp_QuickLM(SEXP ysSEXP, SEXP XsSEXP, SEXP pBigMatSEXP, SEXP observationsSEXP, SEXP npcsSEXP, SEXP nqtnSEXP) {

@@ -73,10 +73,6 @@ get_qtns <- function(Y, GM, P, method, bin.sizes, nqtn, CV = NULL, GDP = NULL,
     # parallel
     cat("Optimizing possible QTNs...\n")
     GD_desc <- bigmemory::describe(GDP)
-    # params <- mapply(function(x, y) c(x, y),
-    #                  rep(bin.sizes, each = length(nqtn)),
-    #                  rep(nqtn, times = length(bin.sizes)),
-    #                  SIMPLIFY = FALSE)
     reml <- foreach::foreach(b = rep(bin.sizes, each = length(nqtn)),
                              n = rep(nqtn, times = length(bin.sizes))) %dopar% {
       local_GDP <- bigmemory::attach.big.matrix(GD_desc)
@@ -86,6 +82,21 @@ get_qtns <- function(Y, GM, P, method, bin.sizes, nqtn, CV = NULL, GDP = NULL,
       myREML <- bin_reml(Y = matrix(Y[, 2], ncol = 1), CV = CV, GK = GK)
       list(res = c(b, n, myREML$LL, myREML$vg, myREML$ve), seqQTN = seqQTN)
     }
+
+    ### Testing code only. This forces optimum bin selection through a non-cluster
+    ### to enable easier debugging.
+    # params <- mapply(function(x, y) c(x, y),
+    #                  rep(bin.sizes, each = length(nqtn)),
+    #                  rep(nqtn, times = length(bin.sizes)),
+    #                  SIMPLIFY = FALSE)
+    # reml <- lapply(params, function(pp) {
+    #   local_GDP <- bigmemory::attach.big.matrix(GD_desc)
+    #   mySpecify <- get_bins(GI = GM, GP = cbind(GM, P), bin.size = pp[1], nqtn = pp[2])
+    #   seqQTN <- which(mySpecify == TRUE)
+    #   GK <- bigmemory::as.matrix(bigmemory::deepcopy(local_GDP, rows = !missing, cols = seqQTN))
+    #   myREML <- bin_reml(Y = matrix(Y[, 2], ncol = 1), CV = CV, GK = GK)
+    #   list(res = c(pp[1], pp[2], myREML$LL, myREML$vg, myREML$ve), seqQTN = seqQTN)
+    # })
 
     # Reduce the REML results
     reml.table <- unlist(lapply(reml, function(l) { return(l$res) }))
